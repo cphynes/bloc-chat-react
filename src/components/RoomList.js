@@ -6,7 +6,7 @@ class RoomList extends Component {
     super(props);
     this.state = {
       rooms: [],
-      roomName: ''
+      name: ''
     };
 
     this.roomsRef = this.props.firebase.database().ref('rooms');
@@ -24,11 +24,11 @@ class RoomList extends Component {
     this.setState({ name: e.target.value });
  }
 
- componentWillUnmount(){
+ componentWillUnmount() {
     this.roomsRef.off();
   }
 
- createRoom(e){
+ createRoom(e) {
   e.preventDefault();
   const newRoom = this.state.name;
   this.roomsRef.push({

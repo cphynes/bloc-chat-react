@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import logo from './logo.svg';
 import * as firebase from 'firebase';
 import './App.css';
 import RoomList from './components/RoomList.js';
+import MessageList from './components/MessageList.js';
 
   var config = {
     apiKey: "AIzaSyAoyZ4iIR2lewDqpYNcS7jQBEq1POpxi4M",
@@ -12,17 +14,41 @@ import RoomList from './components/RoomList.js';
     messagingSenderId: "415096214438"
   };
   firebase.initializeApp(config);
-
+  var rootRef = firebase.database().ref()
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <h1>Bloc Chat React</h1>
-         <RoomList firebase={firebase} />
-      </div>
-    );
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeRoom: "",
+      user: ""
+    };
+    this.setActiveRoom = this.setActiveRoom.bind(this);
+    this.setUser = this.setUser.bind(this);
   }
-}
 
+  setActiveRoom(room) {
+    this.setState({ activeRoom: room });
+  }
+
+  setUser(user) {
+    this.setState({ user: user });
+  }
+
+    render() {
+      let showMessages = this.state.activeRoom;
+
+      return (
+        <div>
+         <h1>Bloc Chat React</h1>
+          <h2>{this.state.activeRoom.name || "Choose a room or Create one"}</h2>
+          <RoomList firebase={firebase} setActiveRoom={this.setActiveRoom} />
+          { showMessages ?
+            <MessageList firebase={firebase} activeRoom={this.state.activeRoom.key}  />
+          : null
+          }
+        </div>
+      );
+    }
+  }
 export default App;

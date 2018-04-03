@@ -59,7 +59,7 @@ createMessage(e) {
    let currentMessages = (
      this.state.messages.map((message)=> {
        if (message.roomId === activeRoom) {
-         return <ol key={message.key}>{message.content}</ol>
+         return <li key={message.key}>{message.content}</li>
        }
        return null;
      })

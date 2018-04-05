@@ -15,7 +15,7 @@ import User from './components/User.js';
   };
   firebase.initializeApp(config);
   var rootRef = firebase.database().ref();
-  
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -41,12 +41,12 @@ class App extends Component {
 
       return (
         <div>
-         <h1>Bloc Chat React</h1>
           <User firebase={firebase} setUser={this.setUser} currentUser={currentUser}/>
+          <h1>Bloc Chat React</h1>
           <h2>{this.state.activeRoom.name || "Choose a room or Create one"}</h2>
           <RoomList firebase={firebase} setActiveRoom={this.setActiveRoom} />
           { showMessages ?
-            <MessageList firebase={firebase} activeRoom={this.state.activeRoom.key}  />
+            <MessageList firebase={firebase} activeRoom={this.state.activeRoom.key} currentUser={currentUser} />
           : null
           }
         </div>

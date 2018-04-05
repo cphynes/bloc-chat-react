@@ -27,6 +27,7 @@ class User extends Component {
       this.props.setUser(null);
     })
   }
+  
   render() {
     return (
       <div>

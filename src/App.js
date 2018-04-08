@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
 import './App.css';
+import logo from './logo.svg';
 import RoomList from './components/RoomList.js';
 import MessageList from './components/MessageList.js';
 import User from './components/User.js';
@@ -14,7 +15,6 @@ import User from './components/User.js';
     messagingSenderId: "415096214438"
   };
   firebase.initializeApp(config);
-  var rootRef = firebase.database().ref();
 
 class App extends Component {
   constructor(props) {
@@ -40,9 +40,14 @@ class App extends Component {
       let currentUser = this.state.user === null ? "Guest" : this.state.user.displayName;
 
       return (
-        <div>
+        <div className="App">
+
+       <header className="App-header">
+         <img src={logo} className="App-logo" alt="logo" />
+         <h1 className="App-title">Welcome to Bloc Chat</h1>
+       </header>
+
           <User firebase={firebase} setUser={this.setUser} currentUser={currentUser}/>
-          <h1>Bloc Chat React</h1>
           <h2>{this.state.activeRoom.name || "Choose a room or Create one"}</h2>
           <RoomList firebase={firebase} setActiveRoom={this.setActiveRoom} />
           { showMessages ?

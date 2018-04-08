@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './RoomList.css';
 import * as firebase from 'firebase';
 
 class RoomList extends Component {
@@ -11,6 +12,7 @@ class RoomList extends Component {
   this.roomsRef = this.props.firebase.database().ref('rooms');
   this.createRoom = this.createRoom.bind(this);
   this.roomChange = this.roomChange.bind(this);
+  this.deleteRoom = this.deleteRoom.bind(this);
 }
 
 componentDidMount() {
@@ -45,9 +47,16 @@ selectRoom(room) {
   this.props.setActiveRoom(room);
 }
 
+deleteRoom(roomkey) {
+  const room = this.props.firebase.database().ref('rooms/' + roomkey);
+  room.remove();
+}
+
   render() {
-    let roomlist = this.state.rooms.map((room, index) =>
-      <li key={room.key} onClick={ (e) => {this.selectRoom(room,e)} }>{room.name}</li>
+    let roomList = this.state.rooms.map((room, index) =>
+      <li key={room.key} onClick={ (e) => {this.selectRoom(room,e)} }>{room.name}
+      <button className="deleteRoom" onClick= { (e) => {this.deleteRoom(room.key)} }>Delete</button>
+      </li>
     );
     let roomForm = (
 
@@ -59,8 +68,8 @@ selectRoom(room) {
 
       )
     return (
-      <div>
-        <ul>{roomlist}</ul>
+      <div className='selectRoom'>
+        <ul>{roomList}</ul>
         <ul>{roomForm}</ul>
       </div>
     );

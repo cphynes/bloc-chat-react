@@ -1,0 +1,26 @@
+.selectRoom {
+  background-color: green;
+  width: inherit;
+  height: inherit;
+  float: left;
+  text-align: center;
+}
+
+.roomList {
+  list-style-type: none;
+  padding: 20;
+}
+
+.roomForm {
+  padding: 3px;
+  font-size: 16px;
+}
+
+.activeRoom {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.deleteRoom {
+  color: red;
+}

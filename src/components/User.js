@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
+import './User.css';
 
 class User extends Component {
   constructor (props) {
@@ -27,14 +28,14 @@ class User extends Component {
       this.props.setUser(null);
     })
   }
-  
+
   render() {
     return (
-      <div>
+      <div className="login">
         <h2>{this.props.currentUser} Is signed in.</h2>
         <p>{this.props.currentUser === 'Guest' ? "Please sign in" : "You're signed in"}</p>
-        <button onClick={this.signIn}>Sign In</button>
-        <button onClick={this.signOut}>Sign Out</button>
+        <button className="userButton" onClick={this.signIn}>Sign In</button>
+        <button className="userButton" onClick={this.signOut}>Sign Out</button>
       </div>
     )
   }

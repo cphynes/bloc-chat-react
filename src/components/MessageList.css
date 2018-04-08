@@ -1,0 +1,27 @@
+#messages {
+  box-sizing: border-box;
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  float: center-right;
+}
+
+#current-messages{
+  box-sizing: border-box;
+  width: 200px;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+  position: inherit;
+  bottom: center;
+}
+
+.newMessage {
+  box-sizing: border-box;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  position: center;
+  background-color: orange;
+}

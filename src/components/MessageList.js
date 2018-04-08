@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
+import './MessageList.css';
 
 class MessageList extends Component {
   constructor (props){
@@ -61,27 +62,30 @@ createMessage(e) {
    let currentMessages = (
      this.state.messages.map((message)=> {
        if (message.roomId === activeRoom) {
-         return <li key={message.key}>{message.content}</li>
+         return <li key={message.key}>{message.content}
+         </li>
        }
        return null;
      })
    );
 
    let messageWindow= (
-
-       <form onSubmit={this.createMessage}>
-         <h3>Message Form</h3>
+      <div>
+       <ul>
+       <form className="newMessage" onSubmit={this.createMessage}>
+         <h2>Message Form</h2>
          <textarea type='text' placeholder="Type message here" onChange={this.messageContent}/>
-         <input type="submit" value="Submit"/>
+         <input type='submit' value="Submit"/>
        </form>
-
+       </ul>
+      </div>
    )
    return (
-     <div>
+     <div id='messages'>
        <div>
           {messageWindow}
       </div>
-       <div>
+       <div id='current-messages'>
          {currentMessages}
        </div>
 
